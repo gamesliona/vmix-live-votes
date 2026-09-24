@@ -19,7 +19,7 @@ Requires Node.js 20 or later. No npm dependencies are needed.
 5. Run `node server.mjs` and keep it running.
 6. Open http://127.0.0.1:8080/.
 
-The API key stays in local configuration, which is ignored by Git and never served to the browser. The local server binds to 127.0.0.1 and serves only explicitly allowed files. `/api/votes` returns only the two aggregate results.
+For local mode, the API key stays in local configuration, which is ignored by Git and never served to the browser. The hosted live page uses a key-free public CSV read of only Sheet1!A1:B3. Its config.public.json contains the tally spreadsheet ID and cell mapping, with no API key. The local server binds to 127.0.0.1 and serves only explicitly allowed files. `/api/votes` returns only the two aggregate results.
 
 ## Add to vMix
 
@@ -44,7 +44,7 @@ An API key can read a publicly readable tally, but cannot access a private sprea
 
 For a private source, use a separate tally workbook containing only team labels and two aggregate counts. Update it through an owner-authorized process that copies only those totals. Share only that tally workbook for API-key reads. A 403 can also indicate key restrictions or a disabled API; inspect the returned error first.
 
-This project publishes source code. GitHub Pages cannot run the Node.js proxy; live mode uses the local server.
+The GitHub Pages site reads the aggregate tally directly from Google Sheets every seven seconds. It uses the public Google Sheets CSV endpoint for only Sheet1!A1:B3, with no API key. This works only for a publicly readable aggregate tally. No response rows or email addresses are read. Local mode continues to use the Node.js proxy and config.local.json. The deployment workflow uploads only an explicit list of public files.
 
 ## Third-party assets
 
@@ -52,3 +52,5 @@ This project publishes source code. GitHub Pages cannot run the Node.js proxy; l
 - [Fjalla One](https://github.com/google/fonts/tree/main/ofl/fjallaone), SIL Open Font License: `FjallaOne-LICENSE.txt`.
 
 [Google Sheets API reference](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/get) · [vMix Web Browser documentation](https://www.vmix.com/help28/WebBrowser.html)
+
+

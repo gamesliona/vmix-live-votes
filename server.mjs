@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 import { readSheet, parseVotes } from './sheets.mjs';
 
 const files = {
+  '/config.public.json': ['config.public.json', 'application/json'],
   '/FjallaOne-Regular.ttf': ['FjallaOne-Regular.ttf', 'font/ttf'],
   '/connection-test.html': ['connection-test.html', 'text/html'],
   '/': ['index.html', 'text/html'],
