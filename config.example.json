@@ -1,0 +1,13 @@
+{
+  "apiKey": "PASTE_GOOGLE_SHEETS_API_KEY_HERE",
+  "spreadsheetId": "PASTE_PUBLIC_TALLY_SPREADSHEET_ID_HERE",
+  "range": "Sheet1!A1:C3",
+  "countCells": [
+    "B2",
+    "B3"
+  ],
+  "labelCells": [
+    "A2",
+    "A3"
+  ]
+}

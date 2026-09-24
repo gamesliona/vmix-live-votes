@@ -1,0 +1,25 @@
+@font-face { font-family: 'Fjalla One'; src: url('FjallaOne-Regular.ttf') format('truetype'); font-style: normal; font-weight: 400; font-display: swap; }
+html, body { margin: 0; background: transparent; overflow: hidden; }
+body { min-height: 100vh; display: grid; place-items: center; }
+main { position: relative; justify-content: center; }
+main { --bar-length: min(62vh, 640px); --bar-thickness: 120px; display: flex; flex-wrap: wrap; align-items: flex-start; gap: 48px; box-sizing: border-box; width: 500px; max-width: 100vw; padding: 48px; font-family: 'Fjalla One', sans-serif; }
+.team { display: flex; flex-direction: column; align-items: center; width: 176px; }
+.caption { order: 1; margin-top: 14px; }
+.numbers { display: flex; flex-direction: column-reverse; align-items: center; gap: 3px; line-height: 1.15; white-space: nowrap; font-variant-numeric: tabular-nums; color: white; text-shadow: 0 2px 3px #000c, 0 0 5px #0009; }
+.numbers strong { font-size: 48px; font-weight: 400; }
+.numbers > span { font-size: 26px; }
+.track { position: relative; width: var(--bar-thickness); height: var(--bar-length); }
+/* Rotate the complete 7.css control so its native gloss and shine travel upward. */
+[role="progressbar"] { position: absolute; box-sizing: border-box; top: 100%; left: 0; width: var(--bar-length); height: var(--bar-thickness); margin: 0; transform-origin: top left; transform: rotate(-90deg); }
+/* Smooth lengthwise highlights, without the horizontal theme's dark end caps. */
+[role="progressbar"] { background: linear-gradient(180deg, #ededed 0%, #dedede 8%, #d5d5d5 46%, #c6c6c6 50%, #d7d7d7 92%, #ededed 100%); border-color: #aaa; box-shadow: inset 0 0 0 1px #ffffffa6, 0 0 0 1px #ffffff70; }
+[role="progressbar"] > div { transition: width 650ms ease; background: linear-gradient(180deg, #8ff29b 0%, #61e875 8%, #4ae365 45%, #16d33b 50%, #0dcb32 82%, #50e86a 100%); box-shadow: inset 0 0 0 1px #b4ffc480; }
+#status { position: absolute; bottom: 10px; left: 0; right: 0; margin: 0; text-align: center; color: white; text-shadow: 0 1px 3px black; font-size: 15px; }
+#status:empty { display: none; }
+[role="progressbar"][data-losing="true"] > div { background: linear-gradient(180deg, #777 0%, #555 8%, #444 45%, #252525 50%, #191919 82%, #3a3a3a 100%); box-shadow: inset 0 0 0 1px #ffffff35; }
+/* Let the soft edge light extend outside the track; the fill still clips its shine. */
+[role="progressbar"] { overflow: visible; border-radius: 6px; border-color: #eef7f2; box-shadow: inset 0 0 0 1px #ffffffb3, 0 0 3px 1px #ffffff80, 0 0 12px #e7fff52e; }
+[role="progressbar"] > div { position: relative; border-radius: 5px; box-shadow: inset 0 0 0 1px #c8ffdbe6, inset 0 0 6px #b0ffcd99, 0 0 4px 1px #51ff82b3, 0 0 17px 3px #16ed4f66, 0 0 38px 7px #0cdd422e; }
+[role="progressbar"][data-losing="true"] > div { box-shadow: inset 0 0 0 1px #edf3fa99, inset 0 0 5px #ffffff33, 0 0 4px #e0eaff80, 0 0 16px 2px #c6d5eb33, 0 0 30px 5px #bacde61a; }
+[role="progressbar"][data-empty="true"] > div { box-shadow: none; }
+@media (max-width: 500px) { main { gap: 24px; padding: 24px; } .team { width: calc((100vw - 72px) / 2); } .numbers strong { font-size: 36px; } }
