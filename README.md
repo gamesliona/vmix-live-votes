@@ -1,11 +1,11 @@
 # vMix Live Votes
 
-A transparent, centered live-vote overlay with two vertical Windows 7 style progress bars. Built with HTML, CSS, JavaScript and a small Node.js server.
+A transparent, centered live-vote overlay with one horizontal green-and-silver split bar. Built with HTML, CSS, JavaScript and a small Node.js server.
 
 - Google Sheets counts refresh every seven seconds without reloading.
 - Percentages use the sum of the two vote counts.
-- The leader is green; the losing bar turns glossy black. Ties are green.
-- Soft edge glow, animated shine, and locally bundled Fjalla One labels below each bar.
+- The left team is green and the right team is silver. The divider follows their shares of the same total.
+- Large percentages, team names, a glossy split fill, and a moving divider match the broadcast layout.
 - Failed requests preserve the last valid result and show a subtle warning.
 
 ## Setup
@@ -52,5 +52,6 @@ The GitHub Pages site reads the aggregate tally directly from Google Sheets ever
 - [Fjalla One](https://github.com/google/fonts/tree/main/ofl/fjallaone), SIL Open Font License: `FjallaOne-LICENSE.txt`.
 
 [Google Sheets API reference](https://developers.google.com/workspace/sheets/api/reference/rest/v4/spreadsheets.values/get) · [vMix Web Browser documentation](https://www.vmix.com/help28/WebBrowser.html)
+
 
 

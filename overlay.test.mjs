@@ -26,24 +26,27 @@ test('display updates in place every 7s and preserves the last values on HTTP fa
     fetch: async()=> { const value=results[index++]; return {ok:!!value,json:async()=>value ? {teams:parseVotes(value,config),updatedAt:'test'} : {error:'HTTP 503'}}; }
   });
   await new Promise(resolve=>setImmediate(resolve));
-  assert.equal(elements.get('percentage-0').textContent,'50.0%');
+  assert.equal(elements.get('percentage-0').textContent,'50.0');
   assert.equal(elements.get('bar-0')['data-losing'],'false');
   assert.equal(elements.get('bar-1')['data-losing'],'false');
+  assert.equal(elements.get('divider').style, 'left:50%');
   await tick();
-  assert.equal(elements.get('percentage-0').textContent,'66.7%');
-  assert.equal(elements.get('percentage-1').textContent,'33.3%');
+  assert.equal(elements.get('percentage-0').textContent,'66.7');
+  assert.equal(elements.get('percentage-1').textContent,'33.3');
   assert.equal(elements.get('count-0').textContent,'2 votes');
   assert.equal(elements.get('count-1').textContent,'1 vote');
   assert.equal(elements.get('bar-1')['data-losing'],'true');
   assert.ok(Math.abs(parseFloat(elements.get('bar-0').firstElementChild.style.width)-200/3)<1e-10);
   await tick();
-  assert.equal(elements.get('percentage-0').textContent,'0.0%');
+  assert.equal(elements.get('percentage-0').textContent,'0.0');
   assert.equal(elements.get('bar-1').firstElementChild.style.width,'0%');
+  assert.equal(elements.get('split-track')['data-empty'], 'true');
   await tick();
   const width = elements.get('bar-0').firstElementChild.style.width;
   await tick();
   assert.equal(elements.get('bar-0').firstElementChild.style.width,width);
-  assert.equal(elements.get('percentage-0').textContent,'66.7%');
+  assert.equal(elements.get('divider').style, `left:${2/3*100}%`);
+  assert.equal(elements.get('percentage-0').textContent,'66.7');
   assert.match(elements.get('status').textContent,/reconnecting/);
   assert.equal(elements.get('bar-1')['data-losing'],'true');
   await tick();
@@ -53,3 +56,5 @@ test('display updates in place every 7s and preserves the last values on HTTP fa
   assert.equal(elements.get('bar-0')['data-losing'],'false');
   assert.equal(elements.get('bar-1')['data-losing'],'false');
 });
+
+

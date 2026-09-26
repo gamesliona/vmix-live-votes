@@ -70,7 +70,8 @@
       }
       result.teams.forEach((team, index) => {
         document.getElementById(`label-${index}`).textContent = team.label;
-        document.getElementById(`percentage-${index}`).textContent = `${team.percentage.toFixed(1)}%`;
+        document.getElementById(`bar-label-${index}`).textContent = team.label;
+        document.getElementById(`percentage-${index}`).textContent = team.percentage.toFixed(1);
         document.getElementById(`count-${index}`).textContent = `${team.votes.toLocaleString()} ${team.votes === 1 ? 'vote' : 'votes'}`;
         const bar = document.getElementById(`bar-${index}`);
         bar.setAttribute('data-losing', String(team.votes < result.teams[1 - index].votes));
@@ -79,6 +80,9 @@
         bar.setAttribute('aria-valuenow', team.percentage.toFixed(1));
         bar.setAttribute('aria-valuetext', `${team.votes} votes, ${team.percentage.toFixed(1)} percent`);
       });
+      const hasVotes = result.teams.some(team => team.votes > 0);
+      document.getElementById('split-track').setAttribute('data-empty', String(!hasVotes));
+      document.getElementById('divider').setAttribute('style', `left:${hasVotes ? result.teams[0].percentage : 50}%`);
       lastSuccess = result.updatedAt;
       document.getElementById('status').textContent = demo ? 'DEMO' : '';
     } catch (error) {
@@ -93,3 +97,4 @@
   refresh();
   setInterval(refresh, 7000);
 })();
+
